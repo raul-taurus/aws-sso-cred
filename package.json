@@ -1,0 +1,27 @@
+{
+  "name": "aws-sso-cred",
+  "version": "1.0.7",
+  "description": "Parse the aws sso cache to credentials file",
+  "bin": {
+    "aws-sso-cred": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "aws",
+    "cdk",
+    "sso"
+  ],
+  "author": "Raul",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "typescript": "^5.3.3"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raul-taurus/aws-sso-cred"
+  }
+}
