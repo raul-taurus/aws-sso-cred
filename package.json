@@ -1,11 +1,17 @@
 {
   "name": "aws-sso-cred",
+  "type": "module",
   "version": "1.0.7",
   "description": "Parse the aws sso cache to credentials file",
-  "bin": {
-    "aws-sso-cred": "index.js"
-  },
+  "bin": "index.js",
+  "files": [
+    "index.js",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -14,10 +20,10 @@
     "sso"
   ],
   "author": "Raul",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.11.19",
-    "typescript": "^5.3.3"
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
   },
   "main": "index.js",
   "repository": {

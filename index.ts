@@ -32,7 +32,7 @@ type SsoProfile = {
 
 class AwsSsoCred {
   private parseProfileSection(m: string): SsoProfile {
-    return Array.from(m.matchAll(/(.+?)\s*=\s*(.+?)\s+/g)).reduce((o, m) => ((o[m[1]] = m[2]), o), {} as any);
+    return Array.from(m.matchAll(/(.+?)\s*=\s*(.+?)\s+/g)).reduce((o, m) => ((o[m[1] as string] = m[2]), o), {} as any);
   }
 
   private parseConfigFile(configFile: string): AwsConfig {
@@ -40,7 +40,7 @@ class AwsSsoCred {
     return Array.from(configText.matchAll(/\[profile\s+([^\]]+)\]\s*([^\[]+)/g)).reduce((o, m) => {
       const profileName = m[1];
       if (profileName) {
-        const profile = this.parseProfileSection(m[2]);
+        const profile = this.parseProfileSection(m[2] as string);
         o[profileName] = profile;
       }
       return o;
@@ -66,7 +66,7 @@ class AwsSsoCred {
         sessionName: profile.sso_session,
         roleName: profile.sso_role_name,
         accountId: profile.sso_account_id,
-      })
+      }),
     );
     const credCacheKey = this.sha1(credCacheArgs);
     const credCacheFile = join(homedir(), '.aws', 'cli', 'cache', `${credCacheKey}.json`);
@@ -86,7 +86,7 @@ class AwsSsoCred {
 
     const config = this.parseConfigFile(configFilePath);
     const profile = config[profileName];
-    const { Credentials: cred } = this.readCredCache(profile);
+    const { Credentials: cred } = this.readCredCache(profile as SsoProfile);
 
     const target = args[1] ? `profile.${args[1]}` : 'default';
 
